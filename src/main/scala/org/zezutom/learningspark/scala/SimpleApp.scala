@@ -1,4 +1,4 @@
-package org.zezutom.learningspark
+package org.zezutom.learningspark.scala
 
 import java.io.File
 
@@ -13,10 +13,10 @@ import org.apache.spark.{SparkConf, SparkContext}
  * How to Run:
  *
  * $SPARK_HOME/bin/spark-submit \
- * --class "org.zezutom.learningspark.SimpleApp" \
+ * --class "org.zezutom.learningspark.scala.SimpleApp" \
  * --master local[4] \
  * target/learningspark-1.0-SNAPSHOT.jar README.md
- * 
+ *
  */
 object SimpleApp {
   def main(args: Array[String]): Unit = {
@@ -34,6 +34,6 @@ object SimpleApp {
     val numAs = logData.filter(line => line.contains("a")).count()
     val numBs = logData.filter(line => line.contains("b")).count()
 
-    println("Lines with a: %s, Lines with b: %b".format(numAs, numBs))
+    println("Lines with a: %s, Lines with b: %s".format(numAs, numBs))
   }
 }
