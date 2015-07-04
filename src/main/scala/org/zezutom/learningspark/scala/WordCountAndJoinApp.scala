@@ -3,7 +3,13 @@ package org.zezutom.learningspark.scala
 import org.apache.spark.{SparkContext, SparkConf}
 
 /**
- * Counts the number of words in the given file and saves the result into an output directory.
+ * Using the README.md and CHANGES.txt files (see: src/main/resources):
+ *
+ * #1 Create RDDs to filter each file for the keyword "Spark"
+ *
+ * #2 Perform a WordCount on each, i.e. so the results are (K, V) pairs of (word, count)
+ *
+ * #3 Join the two RDDs
  *
  * How to Run:
  *
@@ -23,7 +29,6 @@ object WordCountAndJoinApp {
       .wc_join("Spark", "src/main/resources/README.md", "src/main/resources/CHANGES.txt")
 
     println(wc_join_out.mkString("\n"))
-
   }
 
 }
