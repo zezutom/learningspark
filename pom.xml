@@ -13,7 +13,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <scala.version>2.11.7</scala.version>
+        <!-- Compatibility: Spark 1.4.0 ships with Scala 2.10 -->
+        <scala.version>2.10.4</scala.version>
     </properties>
 
     <dependencies>
