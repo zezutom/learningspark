@@ -20,7 +20,7 @@ public class WordCountApp {
         if (args.length == 0)
             throw new IllegalArgumentException("Please provide a file to parse");
 
-        SparkConf conf = new SparkConf().setAppName("Word Count");
+        SparkConf conf = new SparkConf().setAppName("WordCount App");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         new WordCount(sc).wc(args[0]).saveAsTextFile("wc_out.txt");

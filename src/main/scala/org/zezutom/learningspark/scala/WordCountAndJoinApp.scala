@@ -22,7 +22,7 @@ import org.apache.spark.{SparkContext, SparkConf}
 object WordCountAndJoinApp {
 
   def main (args: Array[String]) {
-    val conf = new SparkConf().setAppName("Word Count and Join")
+    val conf = new SparkConf().setAppName("WordCount and Join")
     val sc = new SparkContext(conf)
 
     val wc_join_out = new WordCountAndJoin(sc)

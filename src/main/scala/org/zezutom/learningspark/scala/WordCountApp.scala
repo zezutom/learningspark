@@ -20,7 +20,7 @@ object WordCountApp {
     if (args.length == 0)
       throw new IllegalArgumentException("Please provide a file to parse")
 
-    val conf = new SparkConf().setAppName("Word Count")
+    val conf = new SparkConf().setAppName("WordCount App")
     val sc = new SparkContext(conf)
 
     new WordCount(sc).wc(args(0)).saveAsTextFile("wc_out.txt")
