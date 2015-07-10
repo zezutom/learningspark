@@ -1,5 +1,7 @@
 package org.zezutom.learningspark.scala
 
+import java.io.File
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -20,10 +22,15 @@ object WordCountApp {
     if (args.length == 0)
       throw new IllegalArgumentException("Please provide a file to parse")
 
+    val file = args(0)
+
+    if (!new File(file).exists())
+      throw new IllegalArgumentException(s"No such file: $file")
+
     val conf = new SparkConf().setAppName("WordCount App")
     val sc = new SparkContext(conf)
 
-    new WordCount(sc).wc(args(0)).saveAsTextFile("wc_out.txt")
+    WordCount.wc(sc.textFile(file, 2).cache()).saveAsTextFile("wc_out.txt")
   }
 
 }

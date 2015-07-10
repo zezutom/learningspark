@@ -1,5 +1,9 @@
 package org.zezutom.learningspark.scala
 
+import java.io.File
+import java.nio.file.Paths
+
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkContext, SparkConf}
 
 /**
@@ -21,14 +25,22 @@ import org.apache.spark.{SparkContext, SparkConf}
  */
 object WordCountAndJoinApp {
 
-  def main (args: Array[String]) {
-    val conf = new SparkConf().setAppName("WordCount and Join")
-    val sc = new SparkContext(conf)
+  val conf = new SparkConf().setAppName("WordCount and Join")
+  val sc = new SparkContext(conf)
 
-    val wc_join_out = new WordCountAndJoin(sc)
-      .wc_join("Spark", "src/main/resources/README.md", "src/main/resources/CHANGES.txt")
+  def main (args: Array[String]) {
+
+    val wc_join_out = WordCountAndJoin
+      .wc_join("Spark", readFile("README.md"), readFile("CHANGES.txt"))
 
     println(wc_join_out.mkString("\n"))
+  }
+
+  private def readFile(file:String): RDD[String] = {
+    val resource = Paths.get("src", "main", "resources", file).toAbsolutePath.toString
+    if (!new File(resource).exists())
+      throw new IllegalArgumentException(s"No such file: $file")
+    sc.textFile(resource)
   }
 
 }
