@@ -13,7 +13,8 @@ object WordCountAndJoin {
   private def wc(keyword: String, rdd: RDD[String]): RDD[(String, Int)] =
     rdd
       .flatMap(line => line.split(" "))
-      .filter(_.equals(keyword))
+      .map(_.stripSuffix(",").stripSuffix(".").toLowerCase)   // Remove punctuation and make all words lowercase
+      .filter(_.equals(keyword.toLowerCase))
       .map(word => (word, 1)).reduceByKey(_ + _)
   
 }
