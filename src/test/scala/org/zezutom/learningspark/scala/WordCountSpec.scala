@@ -1,9 +1,8 @@
-package org.zezutom.learninspark
+package org.zezutom.learningspark.scala
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.{Matchers, GivenWhenThen, FlatSpec}
-import org.zezutom.learningspark.scala.WordCount
+import org.scalatest.{FlatSpec, GivenWhenThen, Matchers}
 
 // https://github.com/mkuthan/example-spark/blob/master/src/test/scala/example/SparkExampleSpec.scala
 @RunWith(classOf[JUnitRunner])

@@ -1,4 +1,4 @@
-package org.zezutom.learninspark
+package org.zezutom.learningspark.scala
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.scalatest.{BeforeAndAfterAll, Suite}

@@ -7,6 +7,7 @@ object WordCount {
     lines.flatMap(_.split("\\s"))                             // Split on any white character
       .filter(!_.isEmpty)                                     // Only count words as non-empty strings
       .map(_.stripSuffix(",").stripSuffix(".").toLowerCase)   // Remove punctuation and make all words lowercase
-      .map(word => (word, 1)).reduceByKey(_ + _).sortBy(_._1)
+      .map(word => (word, 1)).reduceByKey(_ + _)
+      .sortByKey()
   }
 }

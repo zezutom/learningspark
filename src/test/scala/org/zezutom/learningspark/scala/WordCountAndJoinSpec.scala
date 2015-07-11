@@ -1,9 +1,8 @@
-package org.zezutom.learninspark
+package org.zezutom.learningspark.scala
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.{FlatSpec, GivenWhenThen, Matchers}
-import org.zezutom.learningspark.scala.WordCountAndJoin
 
 @RunWith(classOf[JUnitRunner])
 class WordCountAndJoinSpec extends FlatSpec with SparkSpec with GivenWhenThen with Matchers {
