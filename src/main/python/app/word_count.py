@@ -3,4 +3,12 @@ from operator import add
 
 class WordCount:
     def wc(self, data):
-        return data.flatMap(lambda x: x.split(' ')).map(lambda x: (x, 1)).reduceByKey(add)
+        # Split on any white character
+        # Only count words as non-empty strings
+        # Remove punctuation and make all words lowercase
+        # Sort alphabetically
+        return data.flatMap(lambda x: x.split()) \
+            .filter(lambda x: x) \
+            .map(lambda x: x.replace(',', '').replace('.', '').lower())\
+            .map(lambda x: (x, 1)).reduceByKey(add)\
+            .sortByKey()
