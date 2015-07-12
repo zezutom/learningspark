@@ -10,10 +10,8 @@
 #
 #!/usr/bin/python
 
-import sys
-
 from pyspark import SparkContext
-from word_count_and_join import WordCountAndJoin
+from src.main.python.app.word_count_and_join import WordCountAndJoin
 
 
 sc = SparkContext("local", "WordCount and Join App")

@@ -83,6 +83,27 @@
                    </execution>
                </executions>
            </plugin>
+           <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>exec-maven-plugin</artifactId>
+               <version>1.3.2</version>
+               <executions>
+                   <execution>
+                       <id>python tests</id>
+                       <phase>test</phase>
+                       <goals>
+                           <goal>exec</goal>
+                       </goals>
+                   </execution>
+               </executions>
+               <configuration>
+                   <workingDirectory>${project.basedir}/src/main/python</workingDirectory>
+                   <executable>lettuce</executable>
+                   <arguments>
+                       <argument>tests</argument>
+                   </arguments>
+               </configuration>
+           </plugin>
        </plugins>
     </build>
 </project>
