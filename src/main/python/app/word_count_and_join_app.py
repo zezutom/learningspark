@@ -6,7 +6,7 @@
 #
 # $SPARK_HOME/bin/spark-submit \
 # --master local[4] \
-# src/main/python/org/zezutom/learningspark/word_count_and_join_app.py
+# src/main/python/app/word_count_and_join_app.py
 #
 #!/usr/bin/python
 

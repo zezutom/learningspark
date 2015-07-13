@@ -6,7 +6,7 @@
 #
 # $SPARK_HOME/bin/spark-submit \
 # --master local[4] \
-# src/main/python/org/zezutom/learningspark/simple_app.py README.md
+# src/main/python/app/simple_app.py src/main/resources/README.md
 #
 #!/usr/bin/python
 
