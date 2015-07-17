@@ -42,5 +42,4 @@ object WordCountAndJoinApp {
       throw new IllegalArgumentException(s"No such file: $file")
     sc.textFile(resource)
   }
-
 }

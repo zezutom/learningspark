@@ -1,9 +1,12 @@
 package org.zezutom.learningspark;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -25,12 +28,13 @@ import java.util.List;
  */
 public class WordCountAndJoinApp {
 
+    private static final SparkConf conf = new SparkConf().setAppName("Word Count and Join");
+    private static final JavaSparkContext sc = new JavaSparkContext(conf);
+
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("Word Count and Join");
-        JavaSparkContext sc = new JavaSparkContext(conf);
 
         List<Tuple2<String, Tuple2<Integer, Integer>>> wc_join_out =
-                new WordCountAndJoin(sc).wc_join("Spark", "src/main/resources/README.md", "src/main/resources/CHANGES.txt");
+                WordCountAndJoin.wc_join("Spark", readFile("README.md"), readFile("CHANGES.txt"));
 
         StringBuilder sb = new StringBuilder();
         wc_join_out.stream().forEach(
@@ -41,5 +45,12 @@ public class WordCountAndJoinApp {
                         .append(t._2()._2())
                         .append(")"));
         System.out.println(sb);
+    }
+
+    private static JavaRDD<String> readFile(String file) {
+        String resource = Paths.get("src", "main", "resources", file).toAbsolutePath().toString();
+        if (!new File(resource).exists())
+            throw new IllegalArgumentException("No such file: " + file);
+        return sc.textFile(resource);
     }
 }
