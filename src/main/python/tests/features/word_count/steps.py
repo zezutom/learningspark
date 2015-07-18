@@ -31,12 +31,12 @@ def init_spark_context(step):
 @step(u'I am using the WordCount')
 def select_word_count(step):
     print ('Trying to use WordCount...')
-    world.worldCount = WordCount()
+    world.wordCount = WordCount()
 
 @step(u'I provide no content')
 def given_i_provide_no_content(step):
     lines = []
-    world.empty_result = world.worldCount.wc(world.sc.parallelize(lines)).collect()
+    world.empty_result = world.wordCount.wc(world.sc.parallelize(lines)).collect()
 
 @step(u'I should see no result')
 def empty_result(step):
@@ -50,7 +50,7 @@ def given_i_provide_the_quote(step):
         u'I took the one less traveled by',
         u'And that has made all the difference.'
     ]
-    world.quote_result = world.worldCount.wc(world.sc.parallelize(lines)).collect()
+    world.quote_result = world.wordCount.wc(world.sc.parallelize(lines)).collect()
 
 @step(u'I should see the expected word count')
 def quote_result(step):
