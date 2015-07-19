@@ -28,13 +28,14 @@ def init_spark_context(step):
     if not hasattr(world, 'sc'):
         world.sc = SparkContext("local", "WordCountAndJoin Test")
 
-@step(u'I am using the WordCountAndJoin')
-def select_word_count(step):
-    print ('Trying to use WordCountAndJoin...')
-    world.wordCountAndJoin = WordCountAndJoin()
+@step(u'I am using WordCountAndJoin')
+def init_spark_context(step):
+    print ('Obtaining WordCountAndJoin...')
+    if not hasattr(world, 'wordCountAndJoin'):
+        world.wordCountAndJoin = WordCountAndJoin()
 
 @step(u'I provide two different texts about "a spark" and "Apache Spark"')
-def given_i_provide_the_quote(step):
+def given_i_provide_two_different_texts(step):
     lines1 = [
         u'Apache Spark is a fast and general-purpose cluster computing system.',
         u'It also supports a rich set of higher-level tools including Spark SQL and Spark Streaming.'
@@ -45,9 +46,9 @@ def given_i_provide_the_quote(step):
         u'Scorched linen was commonly used as tinder to catch the spark and start ',
         u'the fire but producing a good spark could take much time.'
     ]
-    world.quote_result = world.wordCountAndJoin.wc_join(u'Spark', world.sc.parallelize(lines1), world.sc.parallelize(lines1))
+    world.sum_result = world.wordCountAndJoin.wc_join(u'Spark', world.sc.parallelize(lines1), world.sc.parallelize(lines2))
 
 @step(u'I should see the expected word count per text')
-def quote_result(step):
-    actual_result = world.quote_result
+def sum_result(step):
+    actual_result = world.sum_result
     assert_equals([(u'spark', (3, 3))], actual_result)

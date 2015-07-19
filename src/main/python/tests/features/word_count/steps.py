@@ -28,10 +28,11 @@ def init_spark_context(step):
     if not hasattr(world, 'sc'):
         world.sc = SparkContext("local", "WordCount Test")
 
-@step(u'I am using the WordCount')
-def select_word_count(step):
-    print ('Trying to use WordCount...')
-    world.wordCount = WordCount()
+@step(u'I am using WordCount')
+def init_word_count(step):
+    print ('Obtaining WordCount...')
+    if not hasattr(world, 'wordCount'):
+        world.wordCount = WordCount()
 
 @step(u'I provide no content')
 def given_i_provide_no_content(step):

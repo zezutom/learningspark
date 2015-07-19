@@ -2,7 +2,7 @@ Feature: Apache Spark makes it possible to easily count words in text files
 
   Background:
     Given I am using Apache Spark
-    And I am using the WordCount
+    And I am using WordCount
 
   Scenario: Calculate words in an empty set
     Given I provide no content
