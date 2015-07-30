@@ -14,6 +14,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <spark.version>1.4.1</spark.version>
         <scala.version.major>2.11</scala.version.major>
         <scala.version.minor>5</scala.version.minor>
         <scala.version>${scala.version.major}.${scala.version.minor}</scala.version>
@@ -23,7 +24,12 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_${scala.version.major}</artifactId>
-            <version>1.4.0</version>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_${scala.version.major}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
